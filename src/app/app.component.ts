@@ -55,4 +55,10 @@ export class AppComponent {
   color = "red";
   color1 = "green";
   color2 = "yellow";
+  css = {
+    color: '#ff5733',
+    background: '#222',
+    padding: '.5rem',
+    border: '1px solid #ff5733',
+  }
 }

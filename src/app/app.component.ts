@@ -51,4 +51,8 @@ export class AppComponent {
     {"name": "jimny", "type": "suv", "price":1300000}
   ];
 
+  // ! directive switch
+  color = "red";
+  color1 = "green";
+  color2 = "yellow";
 }

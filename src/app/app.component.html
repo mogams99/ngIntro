@@ -17,40 +17,63 @@
 <p *ngIf="!hybrid">Hybrid</p>
 <p *ngIf="!nonhybird">Non Hybrid</p>
 @if (valid) {
-    <p>Valid</p>
+<p>Valid</p>
 }
 <hr>
 
 <h3> Directive NgFor </h3>
 <ol>
-    <li *ngFor="let car of cars" >{{ car }}</li>
+  <li *ngFor="let car of cars">{{ car }}</li>
 </ol>
 <br>
 <ol>
-    <li *ngFor="let i of car | keyvalue">
-        {{ i.key }} is {{ i.value }}
-    </li>
+  <li *ngFor="let i of car | keyvalue">
+    {{ i.key }} is {{ i.value }}
+  </li>
 </ol>
 <br>
 @for (item of cars; track $index) {
-    <p>{{ $index }} : {{ item }} </p>
+<p>{{ $index }} : {{ item }} </p>
 }
 <br>
 <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Price</th>
-      </tr>
-    </thead>
-    <tbody>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
     @for (item of carList; track $index) {
-      <tr>
-        <td>{{ item.name }}</td>
-        <td>{{ item.type }}</td>
-        <td>{{ item.price }}</td>
-      </tr>
+    <tr>
+      <td>{{ item.name }}</td>
+      <td>{{ item.type }}</td>
+      <td>{{ item.price }}</td>
+    </tr>
     }
-    </tbody>
-  </table>
+  </tbody>
+</table>
+<hr>
+
+<h3> Directive NgSwitch </h3>
+<div [ngSwitch]="valid">
+  <p *ngSwitchCase="true">Valid</p>
+  <p *ngSwitchCase="false">Invalid</p>
+  <p *ngSwitchDefault>Unknown</p>
+</div>
+<br>
+@switch (color) {
+  @case ("red") {
+    <p>Red</p>
+  }
+  @case ("green") {
+    <p>Green</p>
+  }
+  @case ("blue") {
+    <p>Blue</p>
+  }
+  @default {
+    <p>Unknown</p>
+  }
+}

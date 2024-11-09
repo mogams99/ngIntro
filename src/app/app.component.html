@@ -15,3 +15,10 @@
 <app-child (changeValue)="showVal($event)"></app-child>
 <app-child [greet]="message"></app-child>
 <hr>
+
+<h3> Directive NgIf </h3>
+<p *ngIf="!hybrid">Hybrid</p>
+<p *ngIf="!nonhybird">Non Hybrid</p>
+@if (valid) {
+    <p>Valid</p>
+}

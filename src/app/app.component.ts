@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
-import { ServerComponent } from "./server/server.component";
+import { ServerComponent } from './server/server.component';
 import { ChildComponent } from "./child/child.component";
 
 @Component({
@@ -13,10 +13,14 @@ import { ChildComponent } from "./child/child.component";
 })
 export class AppComponent {
   title = 'ngIntro';
-  desc = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.';
+  desc = 'This is ngIntro project';
   name = '';
-  message = 'Hello Child';
-  // updateName(x:Event){
-  //   this.name = (x.target as HTMLInputElement).value
-  // };
+  x = 0;
+  message = 'Hello from App Component';
+  serverMessage = 'Hello from Server Component';
+
+  showVal(count: number){
+    console.log(count);
+    this.x=count;
+  }
 }

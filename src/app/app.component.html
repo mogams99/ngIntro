@@ -3,10 +3,15 @@
 
 <input type="search" [(ngModel)]="name">
 <output>{{ name }}</output>
+<p>Callback from child: {{ x }}</p>
 
 <!-- <input type="search" (input)="updateName($event)">
 <output>{{ name }}</output> -->
+<hr>
+<app-server [message]="serverMessage"></app-server>
+<hr>
 
-<app-server>App Server Works</app-server>
-
+<hr>
+<app-child (changeValue)="showVal($event)"></app-child>
 <app-child [greet]="message"></app-child>
+<hr>

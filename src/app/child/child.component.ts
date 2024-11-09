@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-child',
@@ -8,5 +8,12 @@ import { Component, Input } from '@angular/core';
   styleUrl: './child.component.css'
 })
 export class ChildComponent {
-  @Input() greet = '';
+  @Input() greet!: string;
+
+  @Output() changeValue = new EventEmitter<number>();
+  counter = 0;
+  changedValue() {
+    this.counter = this.counter + 1;
+    this.changeValue.emit(this.counter);
+  }
 }

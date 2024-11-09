@@ -4,14 +4,11 @@
 <input type="search" [(ngModel)]="name">
 <output>{{ name }}</output>
 <p>Callback from child: {{ x }}</p>
-
-<!-- <input type="search" (input)="updateName($event)">
-<output>{{ name }}</output> -->
 <hr>
+
 <app-server [message]="serverMessage"></app-server>
 <hr>
 
-<hr>
 <app-child (changeValue)="showVal($event)"></app-child>
 <app-child [greet]="message"></app-child>
 <hr>
@@ -22,3 +19,38 @@
 @if (valid) {
     <p>Valid</p>
 }
+<hr>
+
+<h3> Directive NgFor </h3>
+<ol>
+    <li *ngFor="let car of cars" >{{ car }}</li>
+</ol>
+<br>
+<ol>
+    <li *ngFor="let i of car | keyvalue">
+        {{ i.key }} is {{ i.value }}
+    </li>
+</ol>
+<br>
+@for (item of cars; track $index) {
+    <p>{{ $index }} : {{ item }} </p>
+}
+<br>
+<table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+    @for (item of carList; track $index) {
+      <tr>
+        <td>{{ item.name }}</td>
+        <td>{{ item.type }}</td>
+        <td>{{ item.price }}</td>
+      </tr>
+    }
+    </tbody>
+  </table>

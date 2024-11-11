@@ -2,13 +2,16 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
+
 import { ServerComponent } from './server/server.component';
 import { ChildComponent } from "./child/child.component";
+
+import { CustomPipe} from './pipes/custom.pipe';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule, ServerComponent, FormsModule, ChildComponent],
+  imports: [RouterOutlet, CommonModule, ServerComponent, FormsModule, ChildComponent, CustomPipe],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

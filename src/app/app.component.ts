@@ -61,4 +61,10 @@ export class AppComponent {
     padding: '.5rem',
     border: '1px solid #ff5733',
   }
+
+  // ! pipe
+  pipeMessage = "Hello World";
+  pipeCurrency = 7231;
+  pipeNumber = 98;
+  pipeDate = new Date();
 }

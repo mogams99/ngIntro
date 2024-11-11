@@ -83,3 +83,25 @@
 <p [ngStyle]="{'color': 'green', 'font-size': '20px', 'font-weight': 'bold'}">This is ngStyle Example</p>
 <br>
 <p [ngStyle]="css">ngStyle Example</p>
+<br>
+<hr>
+
+<h3> Pipe </h3>
+<h6> UppercasePipe </h6>
+<p>{{ pipeMessage | uppercase }}</p>
+<br>
+<h6> LowercasePipe </h6>
+<p>{{ pipeMessage | lowercase }}</p>
+<br>
+<h6> CurrencyPipe </h6>
+<p>{{ pipeCurrency | currency : 'IDR' : 'symbol' : '1.2-2' }}</p>
+<br>
+<h6> DatePipe </h6>
+<p>{{ pipeDate | date : 'fullDate' }}</p>
+<br>
+<h6> DecimalPipe </h6>
+<p>{{ pipeNumber | number : '1.0-0' }}</p>
+<br>
+<h6> PercentPipe </h6>
+<p>{{ pipeNumber | percent}}</p>
+<hr>

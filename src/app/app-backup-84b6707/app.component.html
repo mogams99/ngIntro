@@ -1,0 +1,199 @@
+<h1> {{ title }} </h1>
+<p> {{ desc }} </p>
+
+<input type="search" [(ngModel)]="name">
+<output>{{ name }}</output>
+<p>Callback from child: {{ x }}</p>
+<hr>
+
+<app-server [message]="serverMessage"></app-server>
+<hr>
+
+<app-child (changeValue)="showVal($event)"></app-child>
+<app-child [greet]="message"></app-child>
+<hr>
+
+<h3> Directive NgIf </h3>
+<p *ngIf="!hybrid">Hybrid</p>
+<p *ngIf="!nonhybird">Non Hybrid</p>
+@if (valid) {
+<p>Valid</p>
+}
+<hr>
+
+<h3> Directive NgFor </h3>
+<ol>
+  <li *ngFor="let car of cars">{{ car }}</li>
+</ol>
+<br>
+<ol>
+  <li *ngFor="let i of car | keyvalue">
+    {{ i.key }} is {{ i.value }}
+  </li>
+</ol>
+<br>
+@for (item of cars; track $index) {
+<p>{{ $index }} : {{ item }} </p>
+}
+<br>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (item of carList; track $index) {
+    <tr>
+      <td>{{ item.name }}</td>
+      <td>{{ item.type }}</td>
+      <td>{{ item.price }}</td>
+    </tr>
+    }
+  </tbody>
+</table>
+<hr>
+
+<h3> Directive NgSwitch </h3>
+<div [ngSwitch]="valid">
+  <p *ngSwitchCase="true">Valid</p>
+  <p *ngSwitchCase="false">Invalid</p>
+  <p *ngSwitchDefault>Unknown</p>
+</div>
+<br>
+@switch (color) {
+@case ("red") {
+<p>Red</p>
+}
+@case ("green") {
+<p>Green</p>
+}
+@case ("blue") {
+<p>Blue</p>
+}
+@default {
+<p>Unknown</p>
+}
+}
+<hr>
+
+<h3> Directive NgStyle </h3>
+<p [ngStyle]="{'color': 'green', 'font-size': '20px', 'font-weight': 'bold'}">This is ngStyle Example</p>
+<br>
+<p [ngStyle]="css">ngStyle Example</p>
+<br>
+<hr>
+
+<h3> Pipe </h3>
+<h6> UppercasePipe </h6>
+<p>{{ pipeMessage | uppercase }}</p>
+<br>
+<h6> LowercasePipe </h6>
+<p>{{ pipeMessage | lowercase }}</p>
+<br>
+<h6> CurrencyPipe </h6>
+<p>{{ pipeCurrency | currency : 'IDR' : 'symbol' : '1.2-2' }}</p>
+<br>
+<h6> DatePipe </h6>
+<p>{{ pipeDate | date : 'fullDate' }}</p>
+<br>
+<h6> DecimalPipe </h6>
+<p>{{ pipeNumber | number : '1.0-0' }}</p>
+<br>
+<h6> PercentPipe </h6>
+<p>{{ pipeNumber | percent}}</p>
+<br>
+<h6> CustomPipe </h6>
+<p>{{ pipeMessage | custom:5 }}</p>
+<br>
+<hr>
+
+<h3> Forms </h3>
+<h6> Template Driven Forms With Validation </h6>
+<form novalidate #loginform="ngForm" (ngSubmit)="submitLogin(loginform)">
+
+  <label>Name:
+    <input type="text" required name="name" #name=ngModel [(ngModel)]="model.name">
+    <span class="success" [hidden]="name.invalid">Valid Name</span>
+    <span class="error" [hidden]="name.valid || name.dirty">Enter name</span>
+    <span class="error" [hidden]="name.valid || name.pristine">Enter valid name</span>
+  </label>
+
+  <label>Password:
+    <input type="password" required name="pass" #pass=ngModel [(ngModel)]="model.password">
+    <span class="success" [hidden]="pass.invalid">Valid Password</span>
+    <span class="error" [hidden]="pass.valid || pass.dirty">Enter password</span>
+    <span class="error" [hidden]="pass.valid || pass.pristine">Enter valid password</span>
+  </label>
+
+  Gender:
+  <label>
+    <input type="radio" required name="gender" value="f" #gender=ngModel [(ngModel)]="model.gender">
+
+    <span class="success" [hidden]="gender.invalid">Valid Gender</span>
+    <span class="error" [hidden]="gender.valid || gender.dirty">Choose gender</span>
+    <span class="error" [hidden]="gender.valid || gender.pristine">Choose valid gender</span>
+
+    : Female </label>
+
+  <label>
+    <input type="radio" required name="gender" value="m" #gender=ngModel [(ngModel)]="model.gender">
+
+    <span class="success" [hidden]="gender.invalid">Valid Gender</span>
+    <span class="error" [hidden]="gender.valid || gender.dirty">Choose gender</span>
+    <span class="error" [hidden]="gender.valid || gender.pristine">Choose valid gender</span>
+
+    : Male</label>
+
+  <label>City: <select required name="city" #city=ngModel [(ngModel)]="model.city">
+      <option disabled selected value="">--Choose City--</option>
+      <option>New Delhi</option>
+      <option>Chennai</option>
+      <option>Mumbai</option>
+      <option>Kolkata</option>
+    </select></label>
+
+  <label><input type="checkbox" required name="terms" #terms=ngModel [(ngModel)]="model.terms"> : Terms</label>
+
+  <button [disabled]="loginform.invalid">Send</button>
+  <button (click)="loginform.reset()">Reset</button>
+</form>
+<br>
+
+<h6> Reactive Forms With Validation </h6>
+<form novalidate [formGroup]="reactiveLoginForm" (ngSubmit)="reactiveLoginUser()">
+  <label>Email:
+    <input type="email" name="email" formControlName="email">
+    <span *ngIf="reactiveLoginForm.get('email')?.hasError('required') && reactiveLoginForm.get('email')?.pristine">
+      Email Required</span>
+    <span *ngIf="reactiveLoginForm.get('email')?.invalid && reactiveLoginForm.get('email')?.dirty"> Email Invalid</span>
+  </label>
+  <br>
+  <label>Password:
+    <input type="password" name="password" formControlName="password">
+    <span *ngIf="reactiveLoginForm.get('password')?.invalid && reactiveLoginForm.get('password')?.pristine"> Password
+      Required</span>
+    <span *ngIf="!reactiveLoginForm.get('password')?.valid && reactiveLoginForm.get('password')?.dirty"> Password Invalid</span>
+  </label>
+  <br>
+
+  <button>Send</button>
+
+  <p>{{reactiveLoginForm.value | json}}</p>
+  <p>{{reactiveLoginForm.status}}</p>
+  <p>{{reactiveLoginForm.valid}}</p>
+</form>
+<br>
+
+<h6> Reactive With Builder And Validation </h6>
+<form novalidate [formGroup]="rbuilderLoginForm">
+  <label>Email: <input type="email" name="email" required formControlName="email"></label>
+  <label>Password: <input type="password" name="pass" required formControlName="password"></label>
+
+  <button (click)="setVal()">Set</button>
+  <button (click)="patchVal()">Patch</button>
+  <p>{{ rbuilderLoginForm.value | json }}</p>
+  <p>{{ rbuilderLoginForm.valid }}</p>
+</form>

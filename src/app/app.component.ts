@@ -8,6 +8,8 @@ import { ChildComponent } from "./child/child.component";
 
 import { CustomPipe} from './pipes/custom.pipe';
 
+import { Login } from './auth/login';
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -70,4 +72,16 @@ export class AppComponent {
   pipeCurrency = 7231;
   pipeNumber = 98;
   pipeDate = new Date();
+
+  // ! form
+  model = new Login(
+    "",
+    "",
+    "",
+    "",
+    false
+  );
+  submitLogin(data:any){
+    console.log(data.value);
+  }
 }

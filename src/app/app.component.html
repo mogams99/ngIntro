@@ -107,6 +107,40 @@
 <br>
 <h6> CustomPipe </h6>
 <p>{{ pipeMessage | custom:5 }}</p>
+<br>
 <hr>
 
+<h3> Forms </h3>
+<h6> Template Driven Forms </h6>
+<form novalidate #loginform="ngForm"
+  (ngSubmit)="submitLogin(loginform)">
 
+  <label>Name: <input type="text" required name="name"
+    [(ngModel)]="model.name"></label>
+  
+  <label>Password: <input type="password" required name="pass"
+    [(ngModel)]="model.password"></label>
+  
+  Gender:
+  <label> <input type="radio" required name="gender" value="f"
+    [(ngModel)]="model.gender"> : Female </label>
+  
+  <label> <input type="radio" required name="gender" value="m"
+    [(ngModel)]="model.gender"> : Male</label>
+  
+  <label>City: <select required name="city"
+    [(ngModel)]="model.city">
+    <option disabled selected value="">--Choose City--</option>
+    <option>New Delhi</option>
+    <option>Chennai</option>
+    <option>Mumbai</option>
+    <option>Kolkata</option>
+  </select></label>
+  
+  <label><input type="checkbox" required name="terms"
+    [(ngModel)]="model.terms"> : Terms</label>
+  
+  <button [disabled]="loginform.invalid">Send</button>
+  <button (click)="loginform.reset()">Reset</button>
+  
+  </form>

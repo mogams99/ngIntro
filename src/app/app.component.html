@@ -111,24 +111,48 @@
 <hr>
 
 <h3> Forms </h3>
-<h6> Template Driven Forms </h6>
+<h6> Template Driven Forms With Validation </h6>
 <form novalidate #loginform="ngForm"
   (ngSubmit)="submitLogin(loginform)">
 
-  <label>Name: <input type="text" required name="name"
-    [(ngModel)]="model.name"></label>
+  <label>Name: 
+    <input type="text" required name="name" #name=ngModel
+    [(ngModel)]="model.name">
+    <span class="success" [hidden]="name.invalid">Valid Name</span>
+    <span class="error" [hidden]="name.valid || name.dirty">Enter name</span>
+    <span class="error" [hidden]="name.valid || name.pristine">Enter valid name</span>
+  </label>
   
-  <label>Password: <input type="password" required name="pass"
-    [(ngModel)]="model.password"></label>
+  <label>Password: 
+    <input type="password" required name="pass" #pass=ngModel
+    [(ngModel)]="model.password">
+    <span class="success" [hidden]="pass.invalid">Valid Password</span>
+    <span class="error" [hidden]="pass.valid || pass.dirty">Enter password</span>
+    <span class="error" [hidden]="pass.valid || pass.pristine">Enter valid password</span>
+  </label>
   
   Gender:
-  <label> <input type="radio" required name="gender" value="f"
-    [(ngModel)]="model.gender"> : Female </label>
+  <label> 
+    <input type="radio" required name="gender" value="f" #gender=ngModel
+    [(ngModel)]="model.gender"> 
+    
+    <span class="success" [hidden]="gender.invalid">Valid Gender</span>
+    <span class="error" [hidden]="gender.valid || gender.dirty">Choose gender</span>
+    <span class="error" [hidden]="gender.valid || gender.pristine">Choose valid gender</span>
+    
+    : Female </label>
   
-  <label> <input type="radio" required name="gender" value="m"
-    [(ngModel)]="model.gender"> : Male</label>
+  <label> 
+    <input type="radio" required name="gender" value="m" #gender=ngModel
+    [(ngModel)]="model.gender">
+    
+    <span class="success" [hidden]="gender.invalid">Valid Gender</span>
+    <span class="error" [hidden]="gender.valid || gender.dirty">Choose gender</span>
+    <span class="error" [hidden]="gender.valid || gender.pristine">Choose valid gender</span>
+
+    : Male</label>
   
-  <label>City: <select required name="city"
+  <label>City: <select required name="city" #city=ngModel
     [(ngModel)]="model.city">
     <option disabled selected value="">--Choose City--</option>
     <option>New Delhi</option>
@@ -137,10 +161,10 @@
     <option>Kolkata</option>
   </select></label>
   
-  <label><input type="checkbox" required name="terms"
+  <label><input type="checkbox" required name="terms" #terms=ngModel
     [(ngModel)]="model.terms"> : Terms</label>
   
   <button [disabled]="loginform.invalid">Send</button>
   <button (click)="loginform.reset()">Reset</button>
-  
   </form>
+  <br>

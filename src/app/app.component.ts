@@ -1,7 +1,16 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
+
+import {
+  FormsModule,
+  ReactiveFormsModule,
+  FormBuilder,
+  Validators,
+  FormControl,
+  FormArray,
+  FormGroup
+} from '@angular/forms';
 
 import { ServerComponent } from './server/server.component';
 import { ChildComponent } from "./child/child.component";
@@ -13,7 +22,7 @@ import { Login } from './auth/login';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule, ServerComponent, FormsModule, ChildComponent, CustomPipe],
+  imports: [RouterOutlet, CommonModule, FormsModule, ServerComponent, ChildComponent, CustomPipe, ReactiveFormsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -74,6 +83,7 @@ export class AppComponent {
   pipeDate = new Date();
 
   // ! form
+  // ! template driven
   model = new Login(
     "",
     "",
@@ -84,4 +94,23 @@ export class AppComponent {
   submitLogin(data:any){
     console.log(data.value);
   }
+  // ! reactive
+  // email = new FormControl('');
+  reactiveLoginForm = new FormGroup({
+    email: new FormControl(null, [Validators.required, Validators.minLength(3)]),
+    password: new FormControl(null, [Validators.required, Validators.minLength(6)]),
+  })
+  reactiveLoginUser() {
+    console.log(this.reactiveLoginForm.status);
+    console.log(this.reactiveLoginForm.value);
+    console.log(this.reactiveLoginForm.valid);
+  }
+  // ! with form builder
+  constructor(private fb:FormBuilder) {}
+  rbuilderLoginForm = this.fb.group({
+    email: this.fb.control('', [Validators.required, Validators.minLength(4)]),
+    password: this.fb.control('', [Validators.required, Validators.minLength(6)]),
+  })
+  setVal(){this.rbuilderLoginForm.setValue({email:"user_1@mail.com", password:'1234'})}
+  patchVal(){this.rbuilderLoginForm.patchValue({email:"aa@bb", password:'123456'})}
 }

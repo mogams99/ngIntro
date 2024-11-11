@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
@@ -23,6 +23,9 @@ import { Login } from './auth/login';
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, CommonModule, FormsModule, ServerComponent, ChildComponent, CustomPipe, ReactiveFormsModule],
+  encapsulation:ViewEncapsulation.ShadowDom,
+  // encapsulation:ViewEncapsulation.None,
+  // encapsulation:ViewEncapsulation.Emulated,
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

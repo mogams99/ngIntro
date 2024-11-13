@@ -1,3 +1,7 @@
 <p>search works!</p>
 
-<p> Query: {{ query }}</p>
+<a [routerLink]="['/search']" [queryParams]="{name:'swift', fuel:'petrol'}">Swift Petrol</a>
+<a [routerLink]="['/search']" [queryParams]="{name:'brezza', fuel:'cng'}">Brezza CNG</a>
+<a [routerLink]="['/search']" [queryParams]="{name:'fortuner', fuel:'diesel'}">Fortuner Diesel</a>
+
+<p>Car is {{query.name}} and fuel is {{query.fuel}}</p>

@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { ErrorComponent } from './error/error.component';
 import { P1Component } from './p1/p1.component';
 import { P2Component } from './p2/p2.component';
+import { SearchComponent } from './search/search.component';
 
 export const routes: Routes = [
     {
@@ -30,6 +31,11 @@ export const routes: Routes = [
                 component: P2Component
             }
         ]
+    },
+    {
+        path: 'search/:query',
+        title: 'Search',
+        component: SearchComponent
     },
     {
         path: '**',
